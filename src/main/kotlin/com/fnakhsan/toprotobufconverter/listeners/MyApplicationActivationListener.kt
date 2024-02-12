@@ -1,4 +1,4 @@
-package com.github.fnakhsan.toprotobufconverter.listeners
+package com.fnakhsan.toprotobufconverter.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger

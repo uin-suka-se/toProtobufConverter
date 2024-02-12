@@ -1,4 +1,4 @@
-package com.github.fnakhsan.toprotobufconverter.toolWindow
+package com.fnakhsan.toprotobufconverter.toolWindow
 
 import com.intellij.openapi.components.service
 import com.intellij.openapi.diagnostic.thisLogger
@@ -8,8 +8,8 @@ import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.JBLabel
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.content.ContentFactory
-import com.github.fnakhsan.toprotobufconverter.MyBundle
-import com.github.fnakhsan.toprotobufconverter.services.MyProjectService
+import com.fnakhsan.toprotobufconverter.MyBundle
+import com.fnakhsan.toprotobufconverter.services.MyProjectService
 import javax.swing.JButton
 
 

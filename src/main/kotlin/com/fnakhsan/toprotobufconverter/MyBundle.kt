@@ -1,4 +1,4 @@
-package com.github.fnakhsan.toprotobufconverter
+package com.fnakhsan.toprotobufconverter
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
