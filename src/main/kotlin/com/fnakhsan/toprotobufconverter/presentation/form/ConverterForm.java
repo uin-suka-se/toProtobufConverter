@@ -8,10 +8,10 @@ import javax.swing.*;
 
 public class ConverterForm {
     RSyntaxTextArea kotlinTextArea;
-    private JTextField fileName;
+    public JTextField fileName;
     public JButton btnConvert;
     private JLabel labelFileName;
-    private JRadioButton rbKotlin;
+    public JRadioButton rbKotlin;
     private JLabel labelLanguageSource;
     private JPanel panelSource;
     private JPanel panelControl;
@@ -20,11 +20,11 @@ public class ConverterForm {
     private JLabel labelProtobuf;
     private JPanel panelNumeric;
     private JLabel labelNumeric;
-    private JRadioButton btnDefaultNum;
-    private JRadioButton btnUnsignedNum;
-    private JRadioButton btnSignedNum;
-    private JRadioButton btnFixedNum;
-    private JRadioButton btnSignedFixedNum;
+    public JRadioButton rbDefaultNum;
+    public JRadioButton rbUnsignedNum;
+    public JRadioButton rbSignedNum;
+    public JRadioButton rbFixedNum;
+    public JRadioButton rbSignedFixedNum;
     private JScrollPane panelKotlin;
     public JPanel rootPanel;
 

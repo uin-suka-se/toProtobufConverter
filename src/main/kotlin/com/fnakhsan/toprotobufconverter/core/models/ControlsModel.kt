@@ -37,7 +37,7 @@ sealed class LanguageVM(
 
 sealed class VersionVW(
     val preferences: List<NumericPreferencesVM>,
-    val selectedPreference: NumericPreferencesVM? = null,
+    var selectedPreference: NumericPreferencesVM? = null,
     val propertyName: String
 ) {
     class Proto2(
@@ -57,27 +57,17 @@ sealed class VersionVW(
 }
 
 sealed class NumericPreferencesVM(
-    val propertyName: String = DEFAULT
+    var propertyName: String = DEFAULT
 ) {
-    class UseDefault(
-        propertyName: String
-    ) : NumericPreferencesVM(DEFAULT)
+    class UseDefault : NumericPreferencesVM(DEFAULT)
 
-    class UseUInt(
-        propertyName: String
-    ) : NumericPreferencesVM(UINT)
+    class UseUInt : NumericPreferencesVM(UINT)
 
-    class UseSInt(
-        propertyName: String
-    ) : NumericPreferencesVM(SINT)
+    class UseSInt : NumericPreferencesVM(SINT)
 
-    class UseFixed(
-        propertyName: String
-    ) : NumericPreferencesVM(FIXED)
+    class UseFixed : NumericPreferencesVM(FIXED)
 
-    class UseSFixed(
-        propertyName: String
-    ) : NumericPreferencesVM(SFIXED)
+    class UseSFixed : NumericPreferencesVM(SFIXED)
 
     companion object {
         const val DEFAULT = "use default (int)"

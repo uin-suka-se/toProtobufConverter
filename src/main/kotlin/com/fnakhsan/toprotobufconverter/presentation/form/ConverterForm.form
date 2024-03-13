@@ -124,7 +124,7 @@
                       <text value="Numeric Preference"/>
                     </properties>
                   </component>
-                  <component id="ba74c" class="javax.swing.JRadioButton" binding="btnDefaultNum">
+                  <component id="ba74c" class="javax.swing.JRadioButton" binding="rbDefaultNum">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -133,7 +133,7 @@
                       <text value="Default ( int )"/>
                     </properties>
                   </component>
-                  <component id="10362" class="javax.swing.JRadioButton" binding="btnUnsignedNum">
+                  <component id="10362" class="javax.swing.JRadioButton" binding="rbUnsignedNum">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -141,7 +141,7 @@
                       <text value="uint"/>
                     </properties>
                   </component>
-                  <component id="f1ca4" class="javax.swing.JRadioButton" binding="btnSignedNum">
+                  <component id="f1ca4" class="javax.swing.JRadioButton" binding="rbSignedNum">
                     <constraints>
                       <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -149,7 +149,7 @@
                       <text value="sint"/>
                     </properties>
                   </component>
-                  <component id="90b47" class="javax.swing.JRadioButton" binding="btnFixedNum">
+                  <component id="90b47" class="javax.swing.JRadioButton" binding="rbFixedNum">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -157,7 +157,7 @@
                       <text value="fixed"/>
                     </properties>
                   </component>
-                  <component id="f2667" class="javax.swing.JRadioButton" binding="btnSignedFixedNum">
+                  <component id="f2667" class="javax.swing.JRadioButton" binding="rbSignedFixedNum">
                     <constraints>
                       <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>

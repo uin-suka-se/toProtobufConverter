@@ -11,7 +11,7 @@
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="com.fnakhsan.toprotobufconverter.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
         <applicationService serviceImplementation="com.fnakhsan.toprotobufconverter.persistense.ViewStateService" />
-        <notificationGroup id="RoboPOJO Generator" displayType="BALLOON" key="com.robohorse.robopojogenerator"/>
+        <notificationGroup id="toProtobufConverter" displayType="BALLOON" key="com.fnakhsan.toprotobufconverter"/>
     </extensions>
 
     <applicationListeners>

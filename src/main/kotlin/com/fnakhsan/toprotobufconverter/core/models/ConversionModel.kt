@@ -6,8 +6,9 @@ import com.intellij.psi.PsiDirectory
 
 data class ConversionModel (
     val rewriteClasses: Boolean,
-    val useKotlin: Boolean,
-    val annotationEnum: FrameworkVW,
+//    val useKotlin: Boolean,
+    val versionEnum: VersionVW,
+    val preferenceEnum: NumericPreferencesVM,
     val rootClassName: String,
     val content: String?,
     val useSetters: Boolean,
