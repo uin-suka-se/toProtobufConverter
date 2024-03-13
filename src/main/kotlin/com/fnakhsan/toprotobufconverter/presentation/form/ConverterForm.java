@@ -9,7 +9,7 @@ import javax.swing.*;
 public class ConverterForm {
     RSyntaxTextArea kotlinTextArea;
     private JTextField fileName;
-    private JButton btnConvert;
+    public JButton btnConvert;
     private JLabel labelFileName;
     private JRadioButton rbKotlin;
     private JLabel labelLanguageSource;
@@ -26,6 +26,7 @@ public class ConverterForm {
     private JRadioButton btnFixedNum;
     private JRadioButton btnSignedFixedNum;
     private JScrollPane panelKotlin;
+    public JPanel rootPanel;
 
 
     private void createUIComponents() {

@@ -26,6 +26,8 @@ dependencies {
 //    implementation(libs.annotations)
     implementation("com.fifesoft:rsyntaxtextarea:3.3.4")
     implementation("io.insert-koin:koin-core:3.5.3")
+    implementation("commons-io:commons-io:2.11.0")
+    implementation("com.google.guava:guava:33.0.0-jre")
 }
 
 // Set the JVM language level used to build the project. Use Java 11 for 2020.3+, and Java 17 for 2022.2+.
