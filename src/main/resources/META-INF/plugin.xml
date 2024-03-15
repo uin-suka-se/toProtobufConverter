@@ -9,8 +9,8 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.fnakhsan.toprotobufconverter.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <applicationService serviceImplementation="com.fnakhsan.toprotobufconverter.persistense.ViewStateService" />
+<!--        <toolWindow factoryClass="com.fnakhsan.toprotobufconverter.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
+        <applicationService serviceImplementation="com.fnakhsan.toprotobufconverter.services.ViewStateService" />
         <notificationGroup id="toProtobufConverter" displayType="BALLOON" key="com.fnakhsan.toprotobufconverter"/>
     </extensions>
 

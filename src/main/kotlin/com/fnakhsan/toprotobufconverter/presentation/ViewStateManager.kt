@@ -2,6 +2,7 @@ package com.fnakhsan.toprotobufconverter.presentation
 
 import com.fnakhsan.toprotobufconverter.core.models.*
 import com.fnakhsan.toprotobufconverter.presentation.form.ConverterForm
+import com.fnakhsan.toprotobufconverter.services.ViewStateService
 
 internal class ViewStateManager(
     private val viewStateService: ViewStateService
