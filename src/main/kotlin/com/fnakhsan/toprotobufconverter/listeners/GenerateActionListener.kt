@@ -17,9 +17,9 @@ internal class GenerateActionListener(
 ) : ActionListener {
 
     override fun actionPerformed(actionEvent: ActionEvent) = try {
-        messageConversionHelper.validateClassName(className.text)
-        messageConversionHelper.validateJsonContent(textArea.text)
-        eventListener.onJsonDataObtained(viewModelMapper.map(converterForm))
+        messageConversionHelper.validateFileName(converterForm.fileName.text)
+        messageConversionHelper.validateClassContent(converterForm.kotlinTextArea.text)
+        eventListener.onKotlinDataObtained(viewModelMapper.map(converterForm))
     } catch (exception: PluginException) {
         messageDelegate.onPluginExceptionHandled(exception)
     }

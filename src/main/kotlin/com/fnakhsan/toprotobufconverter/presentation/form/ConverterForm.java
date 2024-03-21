@@ -7,7 +7,7 @@ import org.fife.ui.rsyntaxtextarea.Theme;
 import javax.swing.*;
 
 public class ConverterForm {
-    RSyntaxTextArea kotlinTextArea;
+    public RSyntaxTextArea kotlinTextArea;
     public JTextField fileName;
     public JButton btnConvert;
     private JLabel labelFileName;

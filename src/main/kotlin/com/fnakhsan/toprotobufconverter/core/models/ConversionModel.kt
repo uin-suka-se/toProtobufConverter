@@ -9,19 +9,8 @@ data class ConversionModel (
 //    val useKotlin: Boolean,
     val versionEnum: VersionVW,
     val preferenceEnum: NumericPreferencesVM,
-    val rootClassName: String,
-    val content: String?,
-    val useSetters: Boolean,
-    val useGetters: Boolean,
-    val useStrings: Boolean,
-    val useKotlinSingleDataClass: Boolean,
-    val useKotlinParcelable: Boolean,
-    val kotlinNullableFields: Boolean,
-    val javaPrimitives: Boolean,
-    val useTabsIndentation: Boolean,
-    val useLombokValue: Boolean,
-    val useMoshiAdapter: Boolean,
-    val useKotlinDataClass: Boolean
+    val rootFileName: String,
+    val content: String?
 )
 
 data class ProjectModel(

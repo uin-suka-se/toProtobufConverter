@@ -2,48 +2,49 @@ package com.fnakhsan.toprotobufconverter.converter.utils
 
 import com.google.common.base.CaseFormat
 
+
 object MessageConversionHelper {
-    fun validateDataClassContent(content: String): String {
+    fun validateClassContent(content: String): String {
         try {
-            JSONObject(content)
+            ClassObject(content)
         } catch (exception: Exception) {
             return try {
-                val jsonArray = JSONArray(content)
+                val jsonArray = ClassArray(content)
                 if (jsonArray.length() > 0) {
-                    val jsonObject = jsonArray.optJSONObject(0)
+                    val jsonObject = jsonArray.optClassObject(0)
                     if (jsonObject.keySet().isEmpty()) {
-                        throw JSONStructureException()
+                        throw ClassStructureException()
                     }
                     jsonObject.toString()
                 } else {
-                    throw JSONStructureException()
+                    throw ClassStructureException()
                 }
             } catch (arrayException: Exception) {
-                throw JSONStructureException()
+                throw ClassStructureException()
             }
         }
         return content
     }
 
-    fun validateClassName(name: String?) {
+    fun validateFileName(name: String?) {
         if (name?.matches(NAME_PATTERN) != true) {
-            throw WrongClassNameException()
+            throw WrongMessageNameException()
         }
     }
 
-    fun updateClassBody(classBody: String?): String? {
-        if (null != classBody && classBody.isNotEmpty()) {
-            val lastIndex = classBody.length - 1
-            if (classBody[lastIndex] == '\n') {
-                return classBody.substring(0, lastIndex)
+    fun updateMessageBody(messageBody: String?): String? {
+        if (null != messageBody && messageBody.isNotEmpty()) {
+            val lastIndex = messageBody.length - 1
+            if (messageBody[lastIndex] == '\n') {
+                return messageBody.substring(0, lastIndex)
             }
         }
-        return classBody
+        return messageBody
     }
 
-    fun formatClassName(name: String) = upperCaseName(proceedField(name))
+    fun formatMessageName(name: String) = upperCaseName(proceedField(name))
 
-    fun getClassNameWithItemPostfix(name: String) =
+    fun getMessageNameWithItemPostfix(name: String) =
         String.format(ArrayItemsTemplate.ITEM_NAME, upperCaseName(proceedField(name)))
 
     fun upperCaseName(name: String) = if (name.length > 1) {
@@ -52,7 +53,7 @@ object MessageConversionHelper {
         name.uppercase()
     }
 
-    fun formatClassField(name: String) = lowerCaseFirst(proceedField(name), forceLowerCase = true)
+    fun formatMessageField(name: String) = lowerCaseFirst(proceedField(name), forceLowerCase = true)
 
     fun lowerCaseFirst(name: String, forceLowerCase: Boolean = false) = if (name.length > 1) {
         Character.toLowerCase(name.first()).toString() + name.substring(1)
@@ -63,21 +64,21 @@ object MessageConversionHelper {
     }
 
     internal fun setAnnotations(
-        classItem: ClassItem,
-        classAnnotation: String,
+        messageItem: MessageItem,
+        messageAnnotation: String,
         annotation: String,
         imports: Array<String>
     ) {
-        classItem.classAnnotation = classAnnotation
-        classItem.annotation = annotation
-        classItem.classImports.addAll(imports)
+        messageItem.messageAnnotation = messageAnnotation
+        messageItem.annotation = annotation
+        messageItem.messageImports.addAll(imports)
     }
 
-    fun updateClassModel(classBodyBuilder: StringBuilder) {
-        if (classBodyBuilder.isEmpty()) {
-            classBodyBuilder.append(ClassTemplate.FIELD_KOTLIN_DOT_DEFAULT)
+    fun updateMessageModel(messageBodyBuilder: StringBuilder) {
+        if (messageBodyBuilder.isEmpty()) {
+            messageBodyBuilder.append(MessageTemplate.FIELD_KOTLIN_DOT_DEFAULT)
         } else {
-            classBodyBuilder.deleteCharAt(classBodyBuilder.lastIndexOf(","))
+            messageBodyBuilder.deleteCharAt(messageBodyBuilder.lastIndexOf(","))
         }
     }
 
@@ -98,3 +99,5 @@ object MessageConversionHelper {
         return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, objectName)
     }
 }
+
+private val NAME_PATTERN = "^[a-zA-Z0-9]*$".toRegex()
