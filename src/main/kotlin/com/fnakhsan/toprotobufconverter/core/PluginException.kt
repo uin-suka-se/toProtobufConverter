@@ -18,5 +18,5 @@ class PathException :
         "You should choose directory for Protocol Buffers files, before call this plugin"
     )
 
-class WrongClassNameException :
-    PluginException("Wrong class name:", "you should set root class name")
+class WrongFileNameException :
+    PluginException("Wrong file name:", "Files should be named with lower_snake_case")

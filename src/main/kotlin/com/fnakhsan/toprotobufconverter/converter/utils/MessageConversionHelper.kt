@@ -1,5 +1,9 @@
 package com.fnakhsan.toprotobufconverter.converter.utils
 
+import com.fnakhsan.toprotobufconverter.converter.properties.ReservedWords
+import com.fnakhsan.toprotobufconverter.converter.properties.templates.MessageTemplate
+import com.fnakhsan.toprotobufconverter.converter.properties.templates.PreferencesTemplate
+import com.fnakhsan.toprotobufconverter.core.WrongFileNameException
 import com.google.common.base.CaseFormat
 
 
@@ -28,7 +32,7 @@ object MessageConversionHelper {
 
     fun validateFileName(name: String?) {
         if (name?.matches(NAME_PATTERN) != true) {
-            throw WrongMessageNameException()
+            throw WrongFileNameException()
         }
     }
 
@@ -45,7 +49,7 @@ object MessageConversionHelper {
     fun formatMessageName(name: String) = upperCaseName(proceedField(name))
 
     fun getMessageNameWithItemPostfix(name: String) =
-        String.format(ArrayItemsTemplate.ITEM_NAME, upperCaseName(proceedField(name)))
+        String.format(PreferencesTemplate.ITEM_NAME, upperCaseName(proceedField(name)))
 
     fun upperCaseName(name: String) = if (name.length > 1) {
         Character.toUpperCase(name.first()).toString() + name.substring(1)
@@ -96,8 +100,8 @@ object MessageConversionHelper {
             objectName = "json_member_$objectName"
         }
         objectName = objectName.replace("([A-Z])".toRegex(), "_$1")
-        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, objectName)
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_UNDERSCORE, objectName)
     }
 }
 
-private val NAME_PATTERN = "^[a-zA-Z0-9]*$".toRegex()
+private val NAME_PATTERN = "^[a-z0-9_]*$".toRegex()
