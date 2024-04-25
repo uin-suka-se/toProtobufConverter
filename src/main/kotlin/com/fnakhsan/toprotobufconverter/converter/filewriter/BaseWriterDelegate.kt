@@ -22,7 +22,7 @@ internal abstract class BaseWriterDelegate(
         projectModel: ProjectModel
     )
 
-    protected fun prepareClass(
+    protected fun prepareMessage(
         messageItem: MessageItem,
         conversionModel: ConversionModel
     ) = factory.createPostProcessor(conversionModel)

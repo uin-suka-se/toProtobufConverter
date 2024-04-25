@@ -23,7 +23,7 @@ repositories {
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
-//    implementation(libs.annotations)
+//    implementation(libs.options)
     implementation("com.fifesoft:rsyntaxtextarea:3.3.4")
     implementation("io.insert-koin:koin-core:3.5.3")
     implementation("commons-io:commons-io:2.11.0")

@@ -1,75 +1,86 @@
 package com.fnakhsan.toprotobufconverter.converter.postprocessing
 
-import com.robohorse.robopojogenerator.models.GenerationModel
-import com.robohorse.robopojogenerator.properties.ClassItem
-import com.robohorse.robopojogenerator.properties.templates.ClassTemplate
-import com.robohorse.robopojogenerator.utils.ClassGenerateHelper
-import com.robohorse.robopojogenerator.utils.ClassTemplateHelper
+import com.fnakhsan.toprotobufconverter.converter.properties.MessageItem
+import com.fnakhsan.toprotobufconverter.converter.properties.templates.MessageTemplate
+import com.fnakhsan.toprotobufconverter.converter.utils.MessageConversionHelper
+import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
+import com.fnakhsan.toprotobufconverter.converter.utils.MessageTemplateHelper
 
 internal abstract class BasePostProcessor(
-    protected val generateHelper: ClassGenerateHelper,
-    protected val classTemplateHelper: ClassTemplateHelper
+    protected val conversionHelper: MessageConversionHelper,
+    protected val messageTemplateHelper: MessageTemplateHelper
 ) {
 
     fun proceed(
-        classItem: ClassItem,
-        generationModel: GenerationModel
+        messageItem: MessageItem,
+        conversionModel: ConversionModel
     ): String {
-        applyAnnotations(generationModel, classItem)
-        return proceedClass(classItem, generationModel)
+        applyVersion(conversionModel)
+        return proceedMessage(messageItem, conversionModel)
     }
 
-    abstract fun applyAnnotations(
-        generationModel: GenerationModel,
-        classItem: ClassItem
-    )
-
-    abstract fun proceedClassBody(
-        classItem: ClassItem,
-        generationModel: GenerationModel
-    ): String?
-
-    abstract fun createClassTemplate(
-        classItem: ClassItem,
-        classBody: String?,
-        generationModel: GenerationModel
+    abstract fun applyVersion(
+        conversionModel: ConversionModel
     ): String
 
-    private fun proceedClass(
-        classItem: ClassItem,
-        generationModel: GenerationModel
+    abstract fun proceedMessageBody(
+        messageItem: MessageItem,
+        conversionModel: ConversionModel
+    ): String?
+
+    abstract fun createMessageTemplate(
+        messageItem: MessageItem,
+        messageBody: String?,
+        conversionModel: ConversionModel
+    ): String
+
+    private fun proceedMessage(
+        messageItem: MessageItem,
+        conversionModel: ConversionModel
     ): String {
-        val classBody = generateHelper.updateClassBody(
-            proceedClassBody(classItem, generationModel)
+        val messageBody = conversionHelper.updateMessageBody(
+            proceedMessageBody(messageItem, conversionModel)
         )
-        val classTemplate = createClassTemplate(classItem, classBody, generationModel)
-        val importsBuilder = proceedClassImports(classItem.classImports, generationModel)
-        return createClassItemText(
-            classItem.packagePath,
-            importsBuilder.toString(),
-            classTemplate
+        val messageTemplate = createMessageTemplate(messageItem, messageBody, conversionModel)
+        return createMessageItemText(
+            conversionModel.versionEnum.propertyName,
+            messageItem.packagePath,
+            messageTemplate
         )
     }
 
-    open fun proceedClassImports(
+//    open fun proceedMessageVersion(
+//        conversionModel: ConversionModel
+//    ): StringBuilder {
+//        val importsBuilder = StringBuilder()
+//        for (importItem in imports) {
+//            importsBuilder.append(importItem)
+//            importsBuilder.append(MessageTemplate.NEW_LINE)
+//        }
+//        return importsBuilder
+//    }
+
+    open fun createMessageItemText(
+        protobufVersion: String?,
+        packagePath: String?,
+        fileOptions: String?,
+        messageTemplate: String?
+    ) = messageTemplateHelper.createMessageItem(
+        protobufVersion,
+        packagePath,
+        fileOptions,
+        messageTemplate
+    )
+
+    open fun proceedFileOptions(
         imports: HashSet<String>,
-        generationModel: GenerationModel
+        conversionModel: ConversionModel
     ): StringBuilder {
         val importsBuilder = StringBuilder()
         for (importItem in imports) {
             importsBuilder.append(importItem)
-            importsBuilder.append(ClassTemplate.NEW_LINE)
+            importsBuilder.append(MessageTemplate.NEW_LINE)
         }
         return importsBuilder
     }
-
-    open fun createClassItemText(
-        packagePath: String?,
-        imports: String?,
-        classTemplate: String?
-    ) = classTemplateHelper.createClassItem(
-        packagePath,
-        imports,
-        classTemplate
-    )
 }

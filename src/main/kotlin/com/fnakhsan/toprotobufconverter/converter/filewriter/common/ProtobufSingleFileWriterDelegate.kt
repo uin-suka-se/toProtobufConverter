@@ -3,6 +3,7 @@ package com.fnakhsan.toprotobufconverter.converter.filewriter.common
 import com.fnakhsan.toprotobufconverter.converter.filewriter.BaseWriterDelegate
 import com.fnakhsan.toprotobufconverter.converter.filewriter.FileWriter
 import com.fnakhsan.toprotobufconverter.converter.postprocessing.PostProcessorFactory
+import com.fnakhsan.toprotobufconverter.converter.postprocessing.common.ProtobufMessagePostProcessor
 import com.fnakhsan.toprotobufconverter.converter.properties.MessageItem
 import com.fnakhsan.toprotobufconverter.converter.properties.templates.MessageTemplate
 import com.fnakhsan.toprotobufconverter.core.delegates.MessageDelegate
@@ -42,10 +43,11 @@ internal class ProtobufSingleFileWriterDelegate(
                 rootMessageBuilder.append(prepareMessage(it, conversionModel))
             }
         }
-        val messageBody = kotlinDataMessagePostProcessor.createMessageItemText(
+        val messageBody = protobufMessagePostProcessor.createMessageItemText(
             packagePath = projectModel.packageName,
             messageTemplate = rootMessageBuilder.toString(),
-            imports = kotlinDataMessagePostProcessor.proceedMessageImports(imports, conversionModel).toString()
+            fileOptions = protobufMessagePostProcessor.proceedFileOptions(imports,conversionModel).toString(),
+            protobufVersion = conversionModel.versionEnum.propertyName,
         )
         writeFile(
             messageName = conversionModel.rootFileName,
@@ -63,7 +65,7 @@ internal class ProtobufSingleFileWriterDelegate(
             set.forEach { addAll(it.messageImports) }
         }
         val universalMessageItem = MessageItem()
-        kotlinDataMessagePostProcessor.applyAnnotations(conversionModel, universalMessageItem)
+        protobufMessagePostProcessor.applyVersion(conversionModel)
         imports.addAll(universalMessageItem.messageImports)
         return imports
     }

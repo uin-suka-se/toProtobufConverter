@@ -28,14 +28,14 @@ internal class CommonFileWriterDelegate(
     ) = set.forEach { messageItem ->
         messageItem.messageName?.let { messageName ->
             writeFile(
-                classItemBody = prepareClass(
-                    classItem.apply {
+                messageItemBody = prepareClass(
+                    messageItem.apply {
                         packagePath = projectModel.packageName
                     },
                     conversionModel
                 ),
-                className = className,
-                generationModel = generationModel,
+                messageName = messageName,
+                conversionModel = conversionModel,
                 projectModel = projectModel
             )
         }

@@ -24,7 +24,7 @@ data class FieldModel(
     val classType: String? = null,
     val fieldName: String? = null,
     val fieldNameFormatted: String? = null,
-    val annotation: String? = null,
+    val option: String? = null,
     val visibility: Visibility = Visibility.NONE
 )
 

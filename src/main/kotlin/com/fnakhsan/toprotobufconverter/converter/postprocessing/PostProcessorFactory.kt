@@ -1,31 +1,12 @@
 package com.fnakhsan.toprotobufconverter.converter.postprocessing
 
-import com.fnakhsan.toprotobufconverter.converter.postprocessing.BasePostProcessor
-import com.robohorse.robopojogenerator.models.FrameworkVW.AutoValue
-import com.robohorse.robopojogenerator.models.FrameworkVW.JavaRecords
-import com.robohorse.robopojogenerator.models.GenerationModel
-import com.robohorse.robopojogenerator.postrocessing.common.AutoValueClassPostProcessor
-import com.robohorse.robopojogenerator.postrocessing.common.CommonJavaPostProcessor
-import com.robohorse.robopojogenerator.postrocessing.common.JavaRecordsPostProcessor
-import com.robohorse.robopojogenerator.postrocessing.common.KotlinDataClassPostProcessor
+import com.fnakhsan.toprotobufconverter.converter.postprocessing.common.ProtobufMessagePostProcessor
+import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
 
 internal class PostProcessorFactory(
-    private val kotlinDataClassPostProcessor: KotlinDataClassPostProcessor,
-    private val autoValueClassPostProcessor: AutoValueClassPostProcessor,
-    private val commonJavaPostProcessor: CommonJavaPostProcessor,
-    private val javaRecordsPostProcessor: JavaRecordsPostProcessor
+    private val protobufMessagePostProcessor: ProtobufMessagePostProcessor,
 ) {
     fun createPostProcessor(
-        generationModel: GenerationModel
-    ): BasePostProcessor = with(generationModel) {
-        if (useKotlin) {
-            kotlinDataClassPostProcessor
-        } else if (annotationEnum is AutoValue) {
-            autoValueClassPostProcessor
-        } else if (annotationEnum is JavaRecords) {
-            javaRecordsPostProcessor
-        } else {
-            commonJavaPostProcessor
-        }
-    }
+        conversionModel: ConversionModel
+    ): BasePostProcessor = protobufMessagePostProcessor
 }
