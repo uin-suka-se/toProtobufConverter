@@ -6,12 +6,13 @@ import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
 
 internal class FileDelegateFactory(
     private val commonFileWriterDelegate: CommonFileWriterDelegate,
-    private val kotlinSingleFileWriterDelegate: ProtobufSingleFileWriterDelegate
+    private val protobufSingleFileWriterDelegate: ProtobufSingleFileWriterDelegate
 ) {
-
+    private val useProtobuf = true
+    private val useProtobufSingleFile = true
     fun createFileWriter(conversionModel: ConversionModel): BaseWriterDelegate =
-        if (conversionModel.useKotlin && conversionModel.useKotlinSingleDataClass) {
-            kotlinSingleFileWriterDelegate
+        if (useProtobuf && useProtobufSingleFile) {
+            protobufSingleFileWriterDelegate
         } else {
             commonFileWriterDelegate
         }

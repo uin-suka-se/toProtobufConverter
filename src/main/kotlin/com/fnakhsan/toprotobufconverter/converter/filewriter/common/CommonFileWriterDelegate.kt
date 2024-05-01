@@ -28,7 +28,7 @@ internal class CommonFileWriterDelegate(
     ) = set.forEach { messageItem ->
         messageItem.messageName?.let { messageName ->
             writeFile(
-                messageItemBody = prepareClass(
+                messageItemBody = prepareMessage(
                     messageItem.apply {
                         packagePath = projectModel.packageName
                     },

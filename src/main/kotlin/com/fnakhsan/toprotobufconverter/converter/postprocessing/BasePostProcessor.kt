@@ -45,6 +45,7 @@ internal abstract class BasePostProcessor(
         return createMessageItemText(
             conversionModel.versionEnum.propertyName,
             messageItem.packagePath,
+            messageItem.option,
             messageTemplate
         )
     }
