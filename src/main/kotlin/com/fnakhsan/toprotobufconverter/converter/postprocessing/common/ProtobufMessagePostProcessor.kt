@@ -34,7 +34,7 @@ internal class ProtobufMessagePostProcessor(
                     conversionModel,
                     FieldModel(
                         classType = if (conversionModel.versionEnum.propertyName == "Proto2") messageFields[objectName]?.getProto2() else messageFields[objectName]?.getProto3(),
-                        option = messageItem.option,
+                        option = messageItem.fieldOption,
                         fieldName = objectName,
                         fieldNameFormatted = conversionHelper.formatMessageField(objectName)
                     )
@@ -49,9 +49,10 @@ internal class ProtobufMessagePostProcessor(
         messageItem: MessageItem,
         messageBody: String?,
         conversionModel: ConversionModel
-    ): String {
-        TODO("Not yet implemented")
-    }
-
-
+    ): String = messageTemplateHelper.createMessageItem(
+        conversionModel.versionEnum.propertyName,
+        messageItem.packagePath,
+        messageItem.fileOption,
+        messageBody
+    )
 }

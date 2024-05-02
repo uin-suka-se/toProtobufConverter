@@ -21,7 +21,8 @@ data class ProjectModel(
 )
 
 data class FieldModel(
-    val classType: String? = null,
+    val fieldLabel: String? = null,
+    val fieldType: String? = null,
     val fieldName: String? = null,
     val fieldNameFormatted: String? = null,
     val option: String? = null,

@@ -20,7 +20,7 @@ internal class FileWriter {
             UserBinaryFileType.INSTANCE,
             messageFieldBody
         )
-        WriteCommandAction.runWriteCommandAction(projectModel.project, Runnable {
+        WriteCommandAction.runWriteCommandAction(projectModel.project) {
             val existingFile = projectModel.directory.findFile(fileName)
             if (existingFile == null) {
                 projectModel.directory.add(fileNew)
@@ -28,6 +28,6 @@ internal class FileWriter {
                 existingFile.delete()
                 projectModel.directory.add(fileNew)
             }
-        })
+        }
     }
 }
