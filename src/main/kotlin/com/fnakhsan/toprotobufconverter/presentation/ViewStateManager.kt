@@ -13,7 +13,7 @@ internal class ViewStateManager(
             converterForm.apply {
 //                useTabsIndentation.isSelected = model.useTabsIndentation
 //                rewriteExistingClassesCheckBox.isSelected = model.rewriteClasses
-                fileName.text = model.rootClassName
+                fileName.text = model.rootFileName
             }
         }
     }

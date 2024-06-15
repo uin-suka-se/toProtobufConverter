@@ -16,7 +16,7 @@ internal enum class MessageEnum(
     SLONG("sint64", "sint64"),
     FIXEDLONG("fixed64", "fixed64"),
     SFIXEDLONG("sfixed64", "sfixed64"),
-    BOOLEAN("Boolean", "boolean"),
-    STRING("String", "string"),
-    BYTES("Double", "bytes");
+    BOOLEAN("bool", "bool"),
+    STRING("string", "string"),
+    BYTES("bytes", "bytes");
 }
