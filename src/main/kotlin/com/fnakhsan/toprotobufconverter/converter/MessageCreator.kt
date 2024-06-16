@@ -5,7 +5,7 @@ import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
 import com.fnakhsan.toprotobufconverter.core.models.ProjectModel
 
 
-internal class ClassCreator(
+internal class MessageCreator(
     private val protobufConverter: ProtobufConverter,
     private val fileWriteFactory: FileDelegateFactory
 ) {

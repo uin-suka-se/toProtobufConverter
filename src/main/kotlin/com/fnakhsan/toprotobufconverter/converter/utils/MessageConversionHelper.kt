@@ -7,7 +7,7 @@ import com.fnakhsan.toprotobufconverter.core.WrongFileNameException
 import com.google.common.base.CaseFormat
 
 
-object MessageConversionHelper {
+class MessageConversionHelper {
     fun validateClassContent(content: String): String {
         try {
             ClassObject(content)
