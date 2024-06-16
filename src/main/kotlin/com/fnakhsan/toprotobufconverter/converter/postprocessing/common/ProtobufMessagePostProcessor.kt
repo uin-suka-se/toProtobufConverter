@@ -33,7 +33,7 @@ internal class ProtobufMessagePostProcessor(
                 messageTemplateHelper.createProtobufMessageField(
                     conversionModel,
                     FieldModel(
-                        classType = if (conversionModel.versionEnum.propertyName == "Proto2") messageFields[objectName]?.getProto2() else messageFields[objectName]?.getProto3(),
+                        fieldType = if (conversionModel.versionEnum.propertyName == "Proto2") messageFields[objectName]?.getProto2() else messageFields[objectName]?.getProto3(),
                         option = messageItem.fieldOption,
                         fieldName = objectName,
                         fieldNameFormatted = conversionHelper.formatMessageField(objectName)

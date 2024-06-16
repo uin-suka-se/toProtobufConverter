@@ -14,7 +14,16 @@
         <notificationGroup id="toProtobufConverter" displayType="BALLOON" key="com.fnakhsan.toprotobufconverter"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.fnakhsan.toprotobufconverter.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+<!--    <applicationListeners>-->
+<!--        <listener class="com.fnakhsan.toprotobufconverter.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>-->
+<!--    </applicationListeners>-->
+
+    <!--icon="/icons/something.svg"-->
+    <actions>
+        <action id="GenerateProtobufAction" class="com.fnakhsan.toprotobufconverter.action.GenerateProtobufAction"
+                text="Convert Protobuf Message Schema from Kotlin Data Class"
+                description="GenerateProtobufAction">
+            <add-to-group group-id="NewGroup" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
