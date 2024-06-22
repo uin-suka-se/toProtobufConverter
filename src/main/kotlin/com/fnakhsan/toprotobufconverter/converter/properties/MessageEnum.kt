@@ -18,5 +18,7 @@ internal enum class MessageEnum(
     SFIXEDLONG("sfixed64", "sfixed64"),
     BOOLEAN("bool", "bool"),
     STRING("string", "string"),
-    BYTES("bytes", "bytes");
+    BYTES("bytes", "bytes"),
+    ANY("google.protobuf.Any", "google.protobuf.Any")
+    // timestamp
 }

@@ -1,5 +1,6 @@
-package com.robohorse.robopojogenerator.parser
+package com.fnakhsan.toprotobufconverter.converter.parser
 
+import com.robohorse.robopojogenerator.parser.MessageFieldsParser
 import com.robohorse.robopojogenerator.properties.ClassEnum
 import com.robohorse.robopojogenerator.properties.ClassField
 import com.robohorse.robopojogenerator.properties.ClassItem

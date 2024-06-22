@@ -23,9 +23,9 @@ import com.fnakhsan.toprotobufconverter.presentation.PropertiesFactory
 import com.fnakhsan.toprotobufconverter.presentation.ViewModelMapper
 import com.fnakhsan.toprotobufconverter.presentation.ViewStateManager
 import com.fnakhsan.toprotobufconverter.services.ViewStateService
-import com.robohorse.robopojogenerator.parser.InputDataParser
-import com.robohorse.robopojogenerator.parser.JsonArrayParser
-import com.robohorse.robopojogenerator.parser.JsonObjectParser
+import com.fnakhsan.toprotobufconverter.converter.parser.InputDataParser
+import com.fnakhsan.toprotobufconverter.converter.parser.JsonArrayParser
+import com.fnakhsan.toprotobufconverter.converter.parser.JsonObjectParser
 import org.koin.dsl.module
 
 val appModule = module {

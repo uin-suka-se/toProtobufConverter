@@ -15,7 +15,7 @@ interface ConversionDelegate {
 }
 
 internal class ConversionDelegateImpl(
-    private val classCreator: ClassCreator,
+    private val messageCreator: MessageCreator,
     private val environmentDelegate: EnvironmentDelegate,
     private val messageDelegate: MessageDelegate
 ) : ConversionDelegate {
@@ -25,7 +25,7 @@ internal class ConversionDelegateImpl(
         projectModel: ProjectModel
     ) {
         try {
-            classCreator.generateFiles(conversionModel, projectModel)
+            messageCreator.generateFiles(conversionModel, projectModel)
             messageDelegate.showSuccessMessage()
         } catch (e: PluginException) {
             messageDelegate.onPluginExceptionHandled(e)

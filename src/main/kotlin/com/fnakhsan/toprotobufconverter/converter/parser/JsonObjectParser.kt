@@ -1,17 +1,12 @@
-package com.robohorse.robopojogenerator.parser
+package com.fnakhsan.toprotobufconverter.converter.parser
 
-import com.robohorse.robopojogenerator.properties.ClassEnum
-import com.robohorse.robopojogenerator.properties.ClassField
-import com.robohorse.robopojogenerator.properties.ClassItem
-import com.robohorse.robopojogenerator.properties.JsonModel.JsonItem
-import com.robohorse.robopojogenerator.properties.JsonModel.JsonItemArray
-import com.robohorse.robopojogenerator.properties.templates.ImportsTemplate
-import com.robohorse.robopojogenerator.utils.ClassGenerateHelper
+import com.fnakhsan.toprotobufconverter.converter.utils.MessageConversionHelper
+import com.robohorse.robopojogenerator.parser.MessageFieldsParser
 import org.json.JSONArray
 import org.json.JSONObject
 
 internal class JsonObjectParser(
-    private val classGenerateHelper: ClassGenerateHelper
+    private val messageConversionHelper: MessageConversionHelper
 ) {
 
     fun parseJsonObject(
