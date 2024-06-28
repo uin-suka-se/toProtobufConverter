@@ -5,9 +5,10 @@
     <vendor url="https://github.com/fnakhsan/toProtobufConverter">fnakhsan</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java-capable</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
 <!--        <toolWindow factoryClass="com.fnakhsan.toprotobufconverter.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>-->
         <applicationService serviceImplementation="com.fnakhsan.toprotobufconverter.services.ViewStateService" />
@@ -21,9 +22,9 @@
     <!--icon="/icons/something.svg"-->
     <actions>
         <action id="GenerateProtobufAction" class="com.fnakhsan.toprotobufconverter.action.GenerateProtobufAction"
-                text="Convert Protobuf Message Schema from Kotlin Data Class"
+                text="Convert Kotlin Data Class to Protobuf"
                 description="GenerateProtobufAction">
-            <add-to-group group-id="NewGroup" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu3" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

@@ -1,5 +1,6 @@
 package com.fnakhsan.toprotobufconverter.controllers
 
+//import com.fnakhsan.toprotobufconverter.converter.ConversionDelegate
 import com.fnakhsan.toprotobufconverter.converter.ConversionDelegate
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.ui.DialogBuilder
@@ -29,15 +30,17 @@ internal class GenerateProtobufActionController(
         val projectModel = environmentDelegate.obtainProjectModel(event)
         val dialogBuilder = DialogBuilder()
         val window = dialogBuilder.window
+        projectModel.sourceLanguage
         converterViewFactory.bindView(
             dialogBuilder,
             object : GuiFormEventListener {
-                override fun onKotlinDataObtained(model: ConversionModel) {
+                override fun onDataObtained(model: ConversionModel) {
                     viewStateService.persistModel(model)
                     window.dispose()
                     conversionDelegate.runConversionTask(model, projectModel)
                 }
-            }
+            },
+            projectModel
         )
     }
 }

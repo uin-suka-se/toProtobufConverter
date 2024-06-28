@@ -57,9 +57,9 @@ sealed class VersionVW(
 }
 
 sealed class NumericPreferencesVM(
-    var propertyName: String = DEFAULT
+    var propertyName: String = INT
 ) {
-    class UseDefault : NumericPreferencesVM(DEFAULT)
+    class UseDefault : NumericPreferencesVM(INT)
 
     class UseUInt : NumericPreferencesVM(UINT)
 
@@ -70,7 +70,7 @@ sealed class NumericPreferencesVM(
     class UseSFixed : NumericPreferencesVM(SFIXED)
 
     companion object {
-        const val DEFAULT = "use default (int)"
+        const val INT = "use default (int)"
         const val UINT = "use uint"
         const val SINT = "use sint"
         const val FIXED = "use fixed"

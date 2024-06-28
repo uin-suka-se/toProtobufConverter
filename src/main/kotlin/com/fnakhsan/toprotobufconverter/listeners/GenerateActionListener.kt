@@ -1,5 +1,6 @@
 package com.fnakhsan.toprotobufconverter.listeners
 
+//import com.fnakhsan.toprotobufconverter.converter.utils.MessageConversionHelper
 import com.fnakhsan.toprotobufconverter.converter.utils.MessageConversionHelper
 import com.fnakhsan.toprotobufconverter.core.PluginException
 import com.fnakhsan.toprotobufconverter.core.delegates.MessageDelegate
@@ -17,9 +18,9 @@ internal class GenerateActionListener(
 ) : ActionListener {
 
     override fun actionPerformed(actionEvent: ActionEvent) = try {
-        messageConversionHelper.validateFileName(converterForm.fileName.text)
-        messageConversionHelper.validateClassContent(converterForm.kotlinTextArea.text)
-        eventListener.onKotlinDataObtained(viewModelMapper.map(converterForm))
+        messageConversionHelper.validateFileName(converterForm.tfFileName.text)
+//        messageConversionHelper.validateClassContent(converterForm.kotlinTextArea.text)
+        eventListener.onDataObtained(viewModelMapper.map(converterForm))
     } catch (exception: PluginException) {
         messageDelegate.onPluginExceptionHandled(exception)
     }

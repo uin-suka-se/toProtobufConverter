@@ -2,11 +2,10 @@ package com.fnakhsan.toprotobufconverter.core.models
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.psi.PsiDirectory
+import com.intellij.psi.PsiFile
 
-data class ConversionModel (
+data class ConversionModel(
     val rewriteClasses: Boolean,
-//    val useKotlin: Boolean,
     val versionEnum: VersionVW,
     val preferenceEnum: NumericPreferencesVM,
     val rootFileName: String,
@@ -14,9 +13,10 @@ data class ConversionModel (
 )
 
 data class ProjectModel(
-    val directory: PsiDirectory,
+    val sourceLanguage: String,
     val packageName: String?,
-    val virtualFolder: VirtualFile,
+    val virtualFile: VirtualFile,
+    val psiFile: PsiFile,
     val project: Project
 )
 

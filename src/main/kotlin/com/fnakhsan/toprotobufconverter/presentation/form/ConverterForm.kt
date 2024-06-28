@@ -1,48 +1,36 @@
-package com.fnakhsan.toprotobufconverter.presentation.form;
+package com.fnakhsan.toprotobufconverter.presentation.form
 
-import com.intellij.ui.components.JBScrollPane;
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
-import org.fife.ui.rsyntaxtextarea.Theme;
-import javax.swing.*;
+import com.fnakhsan.toprotobufconverter.core.models.ControlsModel
+import com.fnakhsan.toprotobufconverter.presentation.PropertiesFactory
+import com.fnakhsan.toprotobufconverter.presentation.ViewStateManager
+import javax.swing.*
 
-public class ConverterForm {
-    public RSyntaxTextArea kotlinTextArea;
-    public JTextField fileName;
-    public JButton btnConvert;
-    private JLabel labelFileName;
-    public JRadioButton rbKotlin;
-    private JLabel labelLanguageSource;
-    private JPanel panelSource;
-    private JPanel panelControl;
-    private JPanel panelLanguage;
-    private JPanel panelGeneral;
-    private JLabel labelProtobuf;
-    private JPanel panelNumeric;
-    private JLabel labelNumeric;
-    public JRadioButton rbDefaultNum;
-    public JRadioButton rbUnsignedNum;
-    public JRadioButton rbSignedNum;
-    public JRadioButton rbFixedNum;
-    public JRadioButton rbSignedFixedNum;
-    private JScrollPane panelKotlin;
-    public JPanel rootPanel;
+internal abstract class ConverterForm(
+    internal val propertiesFactory: PropertiesFactory,
+    internal val viewStateManager: ViewStateManager
+) {
+    abstract var panelRoot: JPanel
+    abstract var tfFileName: JTextField
+    abstract var btnConvert: JButton
+    abstract var rbDefaultNum: JRadioButton
+    abstract var rbUnsignedNum: JRadioButton
+    abstract var rbSignedNum: JRadioButton
+    abstract var rbFixedNum: JRadioButton
+    abstract var rbSignedFixedNum: JRadioButton
+    abstract var labelFileName: JLabel
+    abstract var labelNumericPref: JLabel
+    abstract var rbNumeric: ButtonGroup
 
+    abstract var properties: ControlsModel?
+    internal lateinit var content: String
 
-    private void createUIComponents() {
-        kotlinTextArea = new RSyntaxTextArea();
-        kotlinTextArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_KOTLIN);
-        kotlinTextArea.isCodeFoldingEnabled();
-        applyTheme(kotlinTextArea);
-        panelKotlin = new JBScrollPane(kotlinTextArea);
-    }
+    abstract fun bindView(converterForm: ConverterForm)
 
-    private void applyTheme(RSyntaxTextArea textArea) {
-        try {
-            final String THEME = "/org/fife/ui/rsyntaxtextarea/themes/idea.xml";
-            Theme.load(getClass().getResourceAsStream(THEME)).apply(textArea);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error Dialog", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    //    Developed later when plugin already support proto2 and proto3
+    abstract fun bindAdditionalProperties(converterForm: ConverterForm)
+
+    //    Developed later when plugin already support proto2 and proto3 (bindLanguageVersion)
+    abstract fun bindLanguage(converterForm: ConverterForm)
+
+    abstract fun bindPreferences(converterForm: ConverterForm)
 }

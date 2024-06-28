@@ -3,25 +3,23 @@ package com.fnakhsan.toprotobufconverter.presentation
 import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
 import com.fnakhsan.toprotobufconverter.presentation.form.ConverterForm
 
-internal class ViewModelMapper(
-    private val converterViewBinder: ConverterViewBinder
-) {
+internal class ViewModelMapper {
 
     fun map(converterForm: ConverterForm) = with(converterForm) {
         ConversionModel(
             rewriteClasses = true,
-            versionEnum = resolveVersion(),
-            preferenceEnum = resolvePreference(),
-            content = kotlinTextArea.text,
-            rootFileName = fileName.text,
+            versionEnum = resolveVersion(this),
+            preferenceEnum = resolvePreference(this),
+            rootFileName = tfFileName.text,
+            content = content
         )
     }
 
-    private fun resolveVersion() = with(converterViewBinder.properties) {
+    private fun resolveVersion(converterForm: ConverterForm) = with(converterForm.properties) {
         this?.selectedSource?.selectedLanguage?.selectedVersion ?: throw IllegalStateException()
     }
 
-    private fun resolvePreference() = with(converterViewBinder.properties) {
+    private fun resolvePreference(converterForm: ConverterForm) = with(converterForm.properties) {
         this?.selectedSource?.selectedLanguage?.selectedVersion?.selectedPreference ?: throw IllegalStateException()
     }
 }

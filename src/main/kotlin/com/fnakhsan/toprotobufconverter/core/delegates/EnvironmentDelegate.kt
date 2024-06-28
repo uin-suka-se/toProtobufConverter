@@ -1,15 +1,16 @@
 package com.fnakhsan.toprotobufconverter.core.delegates
 
-import com.fnakhsan.toprotobufconverter.core.PathException
+import com.fnakhsan.toprotobufconverter.core.SourceException
 import com.fnakhsan.toprotobufconverter.core.models.ProjectModel
+import com.fnakhsan.toprotobufconverter.core.models.SourceVM
 import com.intellij.ide.projectView.ProjectView
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.psi.PsiDirectory
+import com.intellij.psi.PsiFile
+import org.jetbrains.kotlin.codegen.topLevelClassInternalName
+import org.jetbrains.kotlin.psi.KtFile
 
 interface EnvironmentDelegate {
     fun obtainProjectModel(event: AnActionEvent): ProjectModel
@@ -17,34 +18,45 @@ interface EnvironmentDelegate {
 }
 
 internal class EnvironmentDelegateImpl : EnvironmentDelegate {
-
+    private lateinit var source: String
+    private lateinit var packageName: String
     override fun obtainProjectModel(event: AnActionEvent): ProjectModel {
-        val directory = checkPath(event)
         val project = event.project as Project
         // Apa bedanya LangDataKeys.VIRTUAL_FILE sama CommonDataKeys.VIRTUAL_FILE ??
-        val virtualFolder = event.getData(LangDataKeys.VIRTUAL_FILE) as VirtualFile
-        val packageName = ProjectRootManager
-            .getInstance(project)
-            .fileIndex
-            .getPackageNameByDirectory(virtualFolder)
+        val virtualFile = event.getData(LangDataKeys.VIRTUAL_FILE) as VirtualFile
+        val psiFile = event.getData(LangDataKeys.PSI_FILE) as PsiFile
+        // Uji coba
+//        event.getData(LangDataKeys.PSI_FILE).manager.fi
+//        val log = Logger.getFactory()
+//        log.getLoggerInstance(packageName.toString())
+//        val pckg = PsiManager.getInstance(project).project.basePath
+
+//        log.getLoggerInstance("wasd")
+//        val dir = virtualFile.path
+//        val content = VfsUtil.loadText(virtualFile)
+//        println("wasd1 : $dir")
+
+        when(virtualFile.extension) {
+            "kt" -> {
+                source = SourceVM.KOTLIN
+                packageName = (psiFile as KtFile).packageFqName.topLevelClassInternalName()
+            }
+            else -> throw SourceException()
+        }
+        println("wasd2 : $source")
+        println("wasd3 : $packageName")
+
         return ProjectModel(
-            directory = directory,
+            sourceLanguage = source,
             packageName = packageName,
-            project = project,
-            virtualFolder = virtualFolder
+            virtualFile = virtualFile,
+            psiFile = psiFile,
+            project = project
         )
     }
 
     override fun refreshProject(projectModel: ProjectModel) {
         ProjectView.getInstance(projectModel.project).refresh()
-        projectModel.virtualFolder.refresh(false, true)
-    }
-
-    private fun checkPath(event: AnActionEvent): PsiDirectory {
-        val pathItem = event.getData(CommonDataKeys.NAVIGATABLE)
-        return when (pathItem) {
-            is PsiDirectory -> pathItem
-            else -> throw PathException()
-        }
+        projectModel.virtualFile.refresh(false, true)
     }
 }
