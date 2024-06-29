@@ -53,4 +53,4 @@ internal class MessageDelegateImpl : MessageDelegate {
 
 private const val TITLE_OK = "OK"
 private const val TITLE_SUCCESS = "Protobuf conversion: Success"
-private const val GROUP_ID = "Protobuf Converter"
+private const val GROUP_ID = "toProtobufConverter"

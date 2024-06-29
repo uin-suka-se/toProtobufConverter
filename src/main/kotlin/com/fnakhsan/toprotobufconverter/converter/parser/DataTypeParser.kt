@@ -4,8 +4,7 @@ import com.fnakhsan.toprotobufconverter.core.models.NumericPreferencesVM
 import com.intellij.psi.PsiField
 
 interface DataTypeParser {
-    fun parseDataType(id: Int, field: PsiField, numericPref: NumericPreferencesVM): String
-    fun parsePrimitiveDataType(field: PsiField, numericPref: NumericPreferencesVM)
-    fun parseObjectDataType(field: PsiField)
+    fun parseField(id: Int, field: PsiField, numericPref: NumericPreferencesVM): String
+    fun parseDataType(field: PsiField, numericPref: NumericPreferencesVM)
     fun parseNumericDataType(is64: Boolean, numericPref: NumericPreferencesVM): String
 }

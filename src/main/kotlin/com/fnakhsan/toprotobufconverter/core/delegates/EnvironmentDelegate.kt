@@ -5,7 +5,7 @@ import com.fnakhsan.toprotobufconverter.core.models.ProjectModel
 import com.fnakhsan.toprotobufconverter.core.models.SourceVM
 import com.intellij.ide.projectView.ProjectView
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.LangDataKeys
+import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiFile
@@ -23,8 +23,8 @@ internal class EnvironmentDelegateImpl : EnvironmentDelegate {
     override fun obtainProjectModel(event: AnActionEvent): ProjectModel {
         val project = event.project as Project
         // Apa bedanya LangDataKeys.VIRTUAL_FILE sama CommonDataKeys.VIRTUAL_FILE ??
-        val virtualFile = event.getData(LangDataKeys.VIRTUAL_FILE) as VirtualFile
-        val psiFile = event.getData(LangDataKeys.PSI_FILE) as PsiFile
+        val virtualFile = event.getData(CommonDataKeys.VIRTUAL_FILE) as VirtualFile
+        val psiFile = event.getData(CommonDataKeys.PSI_FILE) as PsiFile
         // Uji coba
 //        event.getData(LangDataKeys.PSI_FILE).manager.fi
 //        val log = Logger.getFactory()

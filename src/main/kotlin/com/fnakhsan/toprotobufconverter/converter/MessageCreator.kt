@@ -33,7 +33,7 @@ internal class MessageCreator {
                 generateContent(sourceLanguage, this, conversionModel)
             )
 
-            projectModel.psiFile.containingDirectory?.apply {
+            this.psiFile.containingDirectory?.apply {
                 WriteCommandAction.runWriteCommandAction(project) {
                     val existingFile =
                         findFile(conversionModel.rootFileName)
