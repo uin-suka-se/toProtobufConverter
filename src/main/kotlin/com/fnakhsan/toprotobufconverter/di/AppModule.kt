@@ -52,14 +52,6 @@ val appModule = module {
         MessageDelegateImpl()
     }
 
-    single<PreWriterDelegate> {
-        PreWriterDelegateImpl(get())
-    }
-
-    single {
-        IndentationDelegate()
-    }
-
     single {
         ControlsModel(get())
     }

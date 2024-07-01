@@ -11,8 +11,6 @@ internal class ViewStateManager(
     fun restoreCommonProperties(converterForm: ConverterForm) {
         viewStateService.state.model?.let { model ->
             converterForm.apply {
-//                useTabsIndentation.isSelected = model.useTabsIndentation
-//                rewriteExistingClassesCheckBox.isSelected = model.rewriteClasses
                 tfFileName.text = model.rootFileName
             }
         }

@@ -35,8 +35,7 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
     override fun getPackage(): String = projectModel.packageName.let {
         String.format(
             PACKAGE_TEMPLATE,
-            it
-//            it?.split(".")?.subList(1, it.lastIndex)?.joinToString(".")
+            it?.replace("/", ".")
         ) + NEW_LINE
     }
 
@@ -51,7 +50,7 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
     }.toString()
 
     override fun getFileOption(): String = StringBuilder().apply {
-        append(String.format(JAVA_PACKAGE, projectModel.packageName))
+        append(String.format(JAVA_PACKAGE, projectModel.packageName?.replace("/", ".")))
         append(String.format(JAVA_MULTIPLE_FILE, true))
         append(String.format(JAVA_OUTER_CLASSNAME, projectModel.virtualFile.nameWithoutExtension))
     }.toString()
@@ -69,49 +68,13 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
             val body = StringBuilder()
             var id = 1
             it.allFields.forEach { field ->
-                println("field " + field.name)
                 body.append(INDENT)
                 body.append(getField(id = id, field = field, numericPref = conversionModel.preferenceEnum))
                 body.append(NEW_LINE)
                 id++
             }
-            println("body =\n$body")
             append(NEW_LINE)
             append(getMessage(it.name.toString(), body.toString()))
         }
-        println("content =\n$this")
     }.toString()
-
-//    override fun getAllContent(): String {
-//        println("masuk0")
-//        val prefix = StringBuilder().apply {
-//            append(getVersion())
-//            append(getPackage())
-//            append(getFileOption())
-//        }.toString()
-//        println("masuk1")
-//        val content = StringBuilder()
-////        println("test1" + (((projectModel.psiFile) as KtFile).name))
-////        println("test2" + (projectModel.psiFile.))
-////        val element = (projectModel.psiFile as PsiElement)
-////        val classList = PsiTreeUtil.getChildrenOfTypeAsList(element, PsiClass::class.java)
-//        println("masuk2")
-////        classList.forEach{
-////            println("hellow ${it.name}")
-////        }
-//        (projectModel.psiFile as KtFile).classes.forEach {
-//            println("class" + it.name)
-//            val body = StringBuilder()
-//            var id = 1
-//            it.allFields.forEach { field ->
-//                println("field" + field.name)
-//                body.append(INDENT)
-//                body.append(getField(id = id, field = field, numericPref = conversionModel.preferenceEnum))
-//                id++
-//            }
-//            content.append(NEW_LINE)
-//            content.append(getMessage(it.name.toString(), body.toString()))
-//        }
-//        return prefix + content.toString()
-//    }
 }

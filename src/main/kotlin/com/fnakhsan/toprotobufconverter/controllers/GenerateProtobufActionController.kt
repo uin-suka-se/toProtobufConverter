@@ -1,6 +1,5 @@
 package com.fnakhsan.toprotobufconverter.controllers
 
-//import com.fnakhsan.toprotobufconverter.converter.ConversionDelegate
 import com.fnakhsan.toprotobufconverter.converter.ConversionDelegate
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.ui.DialogBuilder

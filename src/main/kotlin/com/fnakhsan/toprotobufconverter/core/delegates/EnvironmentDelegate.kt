@@ -25,16 +25,6 @@ internal class EnvironmentDelegateImpl : EnvironmentDelegate {
         // Apa bedanya LangDataKeys.VIRTUAL_FILE sama CommonDataKeys.VIRTUAL_FILE ??
         val virtualFile = event.getData(CommonDataKeys.VIRTUAL_FILE) as VirtualFile
         val psiFile = event.getData(CommonDataKeys.PSI_FILE) as PsiFile
-        // Uji coba
-//        event.getData(LangDataKeys.PSI_FILE).manager.fi
-//        val log = Logger.getFactory()
-//        log.getLoggerInstance(packageName.toString())
-//        val pckg = PsiManager.getInstance(project).project.basePath
-
-//        log.getLoggerInstance("wasd")
-//        val dir = virtualFile.path
-//        val content = VfsUtil.loadText(virtualFile)
-//        println("wasd1 : $dir")
 
         when(virtualFile.extension) {
             "kt" -> {
@@ -43,8 +33,6 @@ internal class EnvironmentDelegateImpl : EnvironmentDelegate {
             }
             else -> throw SourceException()
         }
-        println("wasd2 : $source")
-        println("wasd3 : $packageName")
 
         return ProjectModel(
             sourceLanguage = source,
