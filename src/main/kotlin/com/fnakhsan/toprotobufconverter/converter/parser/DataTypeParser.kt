@@ -5,6 +5,6 @@ import com.intellij.psi.PsiField
 
 interface DataTypeParser {
     fun parseField(id: Int, field: PsiField, numericPref: NumericPreferencesVM): String
-    fun parseDataType(field: PsiField, numericPref: NumericPreferencesVM)
+    fun parseDataType(fieldTypeName: String, numericPref: NumericPreferencesVM)
     fun parseNumericDataType(is64: Boolean, numericPref: NumericPreferencesVM): String
 }

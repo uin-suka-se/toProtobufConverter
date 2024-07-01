@@ -71,8 +71,7 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
             it.allFields.forEach { field ->
                 println("field " + field.name)
                 body.append(INDENT)
-                val getField = getField(id = id, field = field, numericPref = conversionModel.preferenceEnum)
-                body.append(getField)
+                body.append(getField(id = id, field = field, numericPref = conversionModel.preferenceEnum))
                 body.append(NEW_LINE)
                 id++
             }
