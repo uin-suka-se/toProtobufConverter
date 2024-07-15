@@ -44,7 +44,7 @@ internal class MessageCreator {
         }
     }
 
-    private fun generateContent(
+    internal fun generateContent(
         sourceLanguage: String,
         projectModel: ProjectModel,
         conversionModel: ConversionModel

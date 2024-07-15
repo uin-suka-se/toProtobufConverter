@@ -15,11 +15,14 @@ import com.fnakhsan.toprotobufconverter.converter.template.ProtobufTemplateHelpe
 import com.fnakhsan.toprotobufconverter.converter.template.VersionTemplate.PROTO2
 import com.fnakhsan.toprotobufconverter.converter.template.VersionTemplate.PROTO3
 import com.fnakhsan.toprotobufconverter.converter.template.VersionTemplate.VERSION_TEMPLATE
+import com.fnakhsan.toprotobufconverter.core.KotlinStructureException
+import com.fnakhsan.toprotobufconverter.core.PluginException
 import com.fnakhsan.toprotobufconverter.core.models.ConversionModel
 import com.fnakhsan.toprotobufconverter.core.models.NumericPreferencesVM
 import com.fnakhsan.toprotobufconverter.core.models.ProjectModel
 import com.fnakhsan.toprotobufconverter.core.models.VersionVW
 import com.intellij.psi.PsiField
+import org.jetbrains.kotlin.idea.testIntegration.framework.KotlinPsiBasedTestFramework.Companion.asKtClassOrObject
 import org.jetbrains.kotlin.psi.KtFile
 
 class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private val conversionModel: ConversionModel) :
@@ -55,26 +58,38 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
         append(String.format(JAVA_OUTER_CLASSNAME, projectModel.virtualFile.nameWithoutExtension))
     }.toString()
 
-    override fun getMessage(name: String, body: String): String = "$MESSAGE $name $OPEN_CURLY_BRACKET$NEW_LINE$body$CLOSE_CURLY_BRACKET"
+    override fun getMessage(name: String, body: String): String =
+        "$MESSAGE $name $OPEN_CURLY_BRACKET$NEW_LINE$body$CLOSE_CURLY_BRACKET"
 
     override fun getField(id: Int, field: PsiField, numericPref: NumericPreferencesVM): String =
         KotlinDataTypeParser().parseField(id = id, field = field, numericPref = numericPref)
 
-    override fun getAllContent(): String = StringBuilder().apply {
-        append(getVersion())
-        append(getPackage())
-        append(getFileOption())
-        (projectModel.psiFile as KtFile).classes.forEach {
-            val body = StringBuilder()
-            var id = 1
-            it.allFields.forEach { field ->
-                body.append(INDENT)
-                body.append(getField(id = id, field = field, numericPref = conversionModel.preferenceEnum))
-                body.append(NEW_LINE)
-                id++
-            }
-            append(NEW_LINE)
-            append(getMessage(it.name.toString(), body.toString()))
+    override fun getAllContent(): String =
+        try {
+            StringBuilder().apply {
+                append(getVersion())
+                append(getPackage())
+                append(getFileOption())
+
+                (projectModel.psiFile as KtFile).classes.filter {
+                    it.asKtClassOrObject()?.isData() == true
+                }.ifEmpty {
+                    throw KotlinStructureException()
+                }.forEach {
+                    val body = StringBuilder()
+                    var id = 1
+                    it.allFields.forEach { field ->
+                        body.append(INDENT)
+                        body.append(getField(id = id, field = field, numericPref = conversionModel.preferenceEnum))
+                        body.append(NEW_LINE)
+                        id++
+                    }
+                    append(NEW_LINE)
+                    append(getMessage(it.name.toString(), body.toString()))
+                }
+            }.toString()
+        } catch (e: PluginException) {
+            throw e
         }
-    }.toString()
+
 }
