@@ -3,6 +3,8 @@ package com.fnakhsan.toprotobufconverter.listeners
 import com.fnakhsan.toprotobufconverter.converter.utils.MessageConversionHelper
 import com.fnakhsan.toprotobufconverter.core.PluginException
 import com.fnakhsan.toprotobufconverter.core.delegates.MessageDelegate
+import com.fnakhsan.toprotobufconverter.presentation.ViewModelMapper
+import com.fnakhsan.toprotobufconverter.presentation.form.ConverterForm
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
@@ -28,6 +30,15 @@ internal class GenerateActionListenerTest {
 
     @InjectMockKs
     lateinit var listener: GenerateActionListener
+
+    @RelaxedMockK
+    lateinit var converterForm: ConverterForm
+
+    @RelaxedMockK
+    lateinit var eventListener: GuiFormEventListener
+
+    @RelaxedMockK
+    lateinit var viewModelMapper: ViewModelMapper
 
     @BeforeTest
     fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true)

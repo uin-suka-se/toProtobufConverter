@@ -83,7 +83,7 @@ class KotlinDataTypeParser : DataTypeParser {
         return prefix.toString() + fieldType + " " + field.name + " = " + id.toString() + suffix.toString() + SEMICOLON
     }
 
-    override fun parseDataType(fieldTypeName: String, numericPref: NumericPreferencesVM) {
+    override fun parseDataType(fieldTypeName: String, numericPref: NumericPreferencesVM): String {
         fieldType = fieldTypeName.let {
             if (it.contains("boolean", ignoreCase = true)) BOOL else if (it.contains(
                     "short",
@@ -123,6 +123,7 @@ class KotlinDataTypeParser : DataTypeParser {
                 )
             ) BYTES else fieldTypeName
         }
+        return fieldType
     }
 
     override fun parseNumericDataType(is64: Boolean, numericPref: NumericPreferencesVM): String =
