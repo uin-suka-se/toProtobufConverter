@@ -63,7 +63,8 @@ class KotlinDataTypeParser : DataTypeParser {
                             .replace("java.lang.", ""), numericPref = numericPref
                     )
                 } else if (this.presentableText.contains("Map")) {
-                    val mapValue = this.presentableText.removePrefix("Map<").removeSuffix(">").replace(" ", "").split(",")
+                    val mapValue =
+                        this.presentableText.removePrefix("Map<").removeSuffix(">").replace(" ", "").split(",")
                     parseDataType(fieldTypeName = mapValue.first(), numericPref = numericPref)
                     val key = fieldType
                     parseDataType(fieldTypeName = mapValue.last(), numericPref = numericPref)
@@ -80,7 +81,10 @@ class KotlinDataTypeParser : DataTypeParser {
         if (fieldOptions.isNotEmpty()) {
             suffix.append(" [").append(fieldOptions.joinToString(", ")).append("]")
         }
-        return prefix.toString() + fieldType + " " + field.name + " = " + id.toString() + suffix.toString() + SEMICOLON
+        val lowerSnakeCaseFieldName = field.name.replace(Regex("([A-Z])")) {
+            "_${it.value.lowercase()}"
+        }
+        return "$prefix$fieldType $lowerSnakeCaseFieldName = $id$suffix$SEMICOLON"
     }
 
     override fun parseDataType(fieldTypeName: String, numericPref: NumericPreferencesVM): String {

@@ -24,6 +24,7 @@ import com.fnakhsan.toprotobufconverter.core.models.VersionVW
 import com.intellij.psi.PsiField
 import org.jetbrains.kotlin.idea.testIntegration.framework.KotlinPsiBasedTestFramework.Companion.asKtClassOrObject
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.util.capitalizeDecapitalize.capitalizeAsciiOnly
 
 class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private val conversionModel: ConversionModel) :
     ProtobufTemplateHelper {
@@ -55,7 +56,10 @@ class KotlinToProtobufProcessor(private val projectModel: ProjectModel, private 
     override fun getFileOption(): String = StringBuilder().apply {
         append(String.format(JAVA_PACKAGE, projectModel.packageName?.replace("/", ".")))
         append(String.format(JAVA_MULTIPLE_FILE, true))
-        append(String.format(JAVA_OUTER_CLASSNAME, projectModel.virtualFile.nameWithoutExtension))
+        append(
+            String.format(JAVA_OUTER_CLASSNAME,
+                conversionModel.rootFileName.split("_").joinToString("") { it.capitalizeAsciiOnly() })
+        )
     }.toString()
 
     override fun getMessage(name: String, body: String): String =
