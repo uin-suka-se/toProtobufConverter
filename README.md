@@ -4,24 +4,15 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties), [plugin ID](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `PLUGIN_ID` in the above README badges.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
-
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+Intellij Idea and Android Studio plugin to Convert Kotlin Data Clas to Protocol Buffers Message.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+Generates Protocol Buffers schema from Kotlin Data Class.
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+Supports: Convert to scalar types, repeated field from one dimensional kotlin array or collection.
+
+<br>
+Keywords: Protocol Buffers, Proto, Schema, Kotlin, Kotlin Data Class. 
 <!-- Plugin description end -->
 
 ## Installation
