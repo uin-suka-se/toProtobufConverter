@@ -44,7 +44,7 @@ internal class GenerateActionListenerTest {
     fun setUp() = MockKAnnotations.init(this, relaxUnitFun = true)
 
     @Test
-    fun onActionHandled_withError() {
+    fun actionPerformed_withError() {
         every { messageConversionHelper.validateFileName(any()) } throws exception
         listener.actionPerformed(actionEvent)
         verify { messageDelegate.onPluginExceptionHandled(exception) }

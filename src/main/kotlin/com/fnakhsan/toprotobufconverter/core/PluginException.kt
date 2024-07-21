@@ -19,7 +19,7 @@ class KotlinStructureException :
     PluginException("Kotlin exception:", "incorrect structure, try on kotlin data class")
 
 class WrongFileNameException :
-    PluginException("Wrong file name:", "Files should be named with lower_snake_case")
+    PluginException("Wrong file name:", "Files cannot be empty and must be named with lower_snake_case")
 
 class PathException :
     PluginException(
