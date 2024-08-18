@@ -5,6 +5,7 @@
     <vendor url="https://github.com/fnakhsan/toProtobufConverter">fnakhsan</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.java-capable</depends>
     <depends>org.jetbrains.kotlin</depends>
 
