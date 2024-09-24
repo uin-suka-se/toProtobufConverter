@@ -26,7 +26,7 @@ dependencies {
 //    implementation(libs.options)
     implementation("io.insert-koin:koin-core:3.5.3")
     implementation("commons-io:commons-io:2.11.0")
-    implementation("com.google.guava:guava:33.0.0-jre")
+    implementation("com.google.guava:guava:33.3.1-jre")
 
     testImplementation("io.mockk:mockk:1.12.1")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
